@@ -1,0 +1,615 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Pricemoov API Reference",
+        "description": "The Pricemoov API is organized around REST. Our API has predictable resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.",
+        "termsOfService": "https://www.pricemoov.com/policies/terms/",
+        "contact": {
+            "email": "corporate@pricemoov.com"
+        },
+        "license": {
+            "name": "Pricemoov"
+        },
+        "version": "2023-02-22"
+    },
+    "host": "api.pricemoov.com",
+    "schemes": [
+        "https"
+    ],
+    "basePath": "/",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "Basic": {
+            "type": "basic"
+        }
+    },
+    "security": [
+        {
+            "Basic": []
+        }
+    ],
+    "paths": {
+        "/api/platform/export_price_lines/": {
+            "get": {
+                "operationId": "api_platform_export_price_lines",
+                "summary": "Get prices from Pricemoov",
+                "description": "This methods allow retrieving prices from pricemoov. Use the promo flag if you wish to retrive prices with promotions.",
+                "parameters": [
+                    {
+                        "name": "price_list__name",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    {
+                        "name": "products__name",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1000
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "default": 0
+                    },
+                    {
+                        "name": "flags",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "x-nullable": true
+                    },
+                    {
+                        "name": "promo",
+                        "in": "query",
+                        "required": false,
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
+                        "name": "promo_at_date",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "format": "date-time",
+                        "default": "2023-02-23T07:18:18.568485Z"
+                    },
+                    {
+                        "name": "dimensions:modalities__context__eq",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "minLength": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "Outbound"
+                ]
+            },
+            "parameters": []
+        },
+        "/api/platform/extension/": {
+            "get": {
+                "operationId": "api_platform_extension_list",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "ordering",
+                        "in": "query",
+                        "description": "Which field to use when ordering the results.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Extension"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "api"
+                ]
+            },
+            "post": {
+                "operationId": "api_platform_extension_create",
+                "summary": "Create a new extension",
+                "description": "Create a new extension",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Extension"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Extension"
+                        }
+                    }
+                },
+                "tags": [
+                    "Inbound"
+                ]
+            },
+            "parameters": []
+        },
+        "/api/platform/extension/{id}/": {
+            "get": {
+                "operationId": "api_platform_extension_read",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Extension"
+                        }
+                    }
+                },
+                "tags": [
+                    "api"
+                ]
+            },
+            "put": {
+                "operationId": "api_platform_extension_update",
+                "summary": "Update an existing extension",
+                "description": "Update an existing extension",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Extension"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Extension"
+                        }
+                    }
+                },
+                "tags": [
+                    "Inbound"
+                ]
+            },
+            "patch": {
+                "operationId": "api_platform_extension_partial_update",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Extension"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Extension"
+                        }
+                    }
+                },
+                "tags": [
+                    "api"
+                ]
+            },
+            "delete": {
+                "operationId": "api_platform_extension_delete",
+                "summary": "Delete an existing extension",
+                "description": "Delete an existing extension",
+                "parameters": [],
+                "responses": {
+                    "204": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "Inbound"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "A unique integer value identifying this extension.",
+                    "required": true,
+                    "type": "integer"
+                }
+            ]
+        },
+        "/api/platform/global_promotion/": {
+            "post": {
+                "operationId": "api_platform_global_promotion",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    {
+                        "name": "price_list_id",
+                        "in": "query",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "price_line_active_prices",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "Outbound"
+                ]
+            },
+            "parameters": []
+        },
+        "/api/platform/product_catalog/": {
+            "get": {
+                "operationId": "api_platform_product_catalog_list",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "ordering",
+                        "in": "query",
+                        "description": "Which field to use when ordering the results.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ProductCatalog"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Inbound"
+                ]
+            },
+            "post": {
+                "operationId": "api_platform_product_catalog_create",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ProductCatalog"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ProductCatalog"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Inbound"
+                ]
+            },
+            "parameters": []
+        },
+        "/api/platform/product_catalog/is_config/": {
+            "get": {
+                "operationId": "api_platform_product_catalog_is_config",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "ordering",
+                        "in": "query",
+                        "description": "Which field to use when ordering the results.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ProductCatalog"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Inbound"
+                ]
+            },
+            "parameters": []
+        },
+        "/api/platform/product_catalog/{code}/": {
+            "get": {
+                "operationId": "api_platform_product_catalog_read",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/ProductCatalog"
+                        }
+                    }
+                },
+                "tags": [
+                    "Inbound"
+                ]
+            },
+            "put": {
+                "operationId": "api_platform_product_catalog_update",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ProductCatalog"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/ProductCatalog"
+                        }
+                    }
+                },
+                "tags": [
+                    "Inbound"
+                ]
+            },
+            "patch": {
+                "operationId": "api_platform_product_catalog_partial_update",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ProductCatalog"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/ProductCatalog"
+                        }
+                    }
+                },
+                "tags": [
+                    "api"
+                ]
+            },
+            "delete": {
+                "operationId": "api_platform_product_catalog_delete",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "204": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "Inbound"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "code",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/login/": {
+            "post": {
+                "operationId": "login_create",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CustomTokenObtainPair"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/CustomTokenObtainPair"
+                        }
+                    }
+                },
+                "tags": [
+                    "Authentication"
+                ]
+            },
+            "parameters": []
+        },
+        "/login/refresh/": {
+            "post": {
+                "operationId": "login_refresh_create",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CustomTokenRefresh"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/CustomTokenRefresh"
+                        }
+                    }
+                },
+                "tags": [
+                    "Authentication"
+                ]
+            },
+            "parameters": []
+        }
+    },
+    "definitions": {
+        "Extension": {
+            "required": [
+                "name",
+                "values"
+            ],
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "ID",
+                    "type": "integer",
+                    "readOnly": true
+                },
+                "name": {
+                    "title": "Name",
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 1
+                },
+                "values": {
+                    "title": "Values",
+                    "type": "object"
+                }
+            }
+        },
+        "ProductCatalog": {
+            "required": [
+                "code"
+            ],
+            "type": "object",
+            "properties": {
+                "code": {
+                    "title": "Code",
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 1
+                },
+                "active": {
+                    "title": "Active",
+                    "type": "boolean",
+                    "default": true
+                }
+            }
+        },
+        "CustomTokenObtainPair": {
+            "required": [
+                "email",
+                "password"
+            ],
+            "type": "object",
+            "properties": {
+                "email": {
+                    "title": "Email",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "password": {
+                    "title": "Password",
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "CustomTokenRefresh": {
+            "required": [
+                "refresh"
+            ],
+            "type": "object",
+            "properties": {
+                "refresh": {
+                    "title": "Refresh",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "access": {
+                    "title": "Access",
+                    "type": "string",
+                    "readOnly": true
+                }
+            }
+        }
+    }
+}
